@@ -1,0 +1,24 @@
+<div class="auth-container">
+  <h2>{{ isRegisterMode ? 'Register' : 'Login' }}</h2>
+
+  <!-- Email Input -->
+  <input [(ngModel)]="email" type="email" placeholder="Email" />
+
+  <!-- Password Input -->
+  <input [(ngModel)]="password" type="password" placeholder="Password" />
+
+  <!-- Submit Button -->
+  <button 
+    [disabled]="loading" 
+    (click)="submit()"
+  >
+    {{ isRegisterMode ? 'Register' : 'Login' }}
+  </button>
+
+  <!-- Toggle Login/Register -->
+  <p>
+    <a href="#" (click)="toggleMode(); $event.preventDefault()">
+      {{ isRegisterMode ? 'Already have an account? Login' : "Don't have an account? Register" }}
+    </a>
+  </p>
+</div>

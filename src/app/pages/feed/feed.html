@@ -1,0 +1,35 @@
+<div class="feed-container">
+
+  <!-- Logout Button -->
+  <div class="feed-header" style="display:flex; justify-content:flex-end; margin-bottom:1rem;">
+    <button (click)="logout()">Logout</button>
+  </div>
+
+  <!-- New Post -->
+  <div class="new-post">
+    <textarea [(ngModel)]="newPost" placeholder="What's on your mind?"></textarea>
+    <button (click)="submitPost()">Post</button>
+  </div>
+
+<div class="posts" *ngFor="let post of posts">
+  <div class="post">
+    <p class="post-author"><strong>{{ post.user_email }}</strong> says:</p>
+    <p class="post-content">{{ post.content }}</p>
+    <small class="post-date">{{ post.created_at | date:'short' }}</small>
+
+    <!-- Replies -->
+    <div class="replies" *ngFor="let reply of post.replies">
+      <p class="reply-author"><strong>{{ reply.user_email }}</strong> replies:</p>
+      <p class="reply-content">{{ reply.content }}</p>
+      <small class="reply-date">{{ reply.created_at | date:'short' }}</small>
+    </div>
+
+    <!-- Reply Input -->
+    <div class="reply-input">
+      <input [(ngModel)]="replyText[post.id]" placeholder="Write a reply..." />
+      <button (click)="submitReply(post.id)">Reply</button>
+    </div>
+  </div>
+</div>
+
+</div>
